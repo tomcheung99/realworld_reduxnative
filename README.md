@@ -12,8 +12,10 @@ There are some screenshot :
 | Platform  | ScreenShot |
 | ------------- | ------------- |
 | Website  | <img src="https://raw.githubusercontent.com/tomcheung99/realworld_reduxnative/main/media/ReadWorldwebsite.png" width="800" height="auto"/>  |
-| IOS      | <img src="https://raw.githubusercontent.com/tomcheung99/realworld_reduxnative/main/media/ReadWorldIosUnLogin.png" width="300" height="auto"/> |
-| IOS (Login) | <img src="https://raw.githubusercontent.com/tomcheung99/realworld_reduxnative/main/media/ReadWorldIosLogin.png" width="300" height="auto"/> |
+| IOS      | <img src="https://raw.githubusercontent.com/tomcheung99/realworld_reduxnative/main/media/ReadWorldIosUnLogin.png" width="300" height="auto"/>| 
+| IOS (Login) | <img src="https://raw.githubusercontent.com/tomcheung99/realworld_reduxnative/main/media/ReadWorldIosLogin.png" width="300" height="auto"/> | 
+| Android  | <img src="https://raw.githubusercontent.com/tomcheung99/realworld_reduxnative/main/media/ReadWorldAndroidUnLogin.jpeg" width="300" height="auto"/> |
+| Android (Login) | <img src="https://raw.githubusercontent.com/tomcheung99/realworld_reduxnative/main/media/ReadWorldAndroidLogin.jpeg" width="300" height="auto"/> |
 
 # Getting started
 run command line <br>
