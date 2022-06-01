@@ -2,7 +2,7 @@
 
 # <a href='https://demo.realworld.io/#/'>Demo </a>   | <a href='https://github.com/gothinkster/realworld'> RealWorld</a>
 
-This codebase was created to demonstrate a fully fledged fullstack application built with Redux Native including CRUD operations, authentication, routing, pagination, and more.  We've gone to great lengths to adhere to the Redux Native community styleguides & best practices.  For more information on how to this works with other frontends/backends, head over to the RealWorld repo.
+This codebase was created to demonstrate a fully fledged fullstack application built with Redux Native including CRUD operations, authentication, routing, pagination, and more.  We've gone to great lengths to adhere to the Redux Native community styleguides & best practices.  For more information on how to this works with other frontends/backends, head over to the <a href='https://github.com/gothinkster/realworld'>RealWorld</a> repo.
 
 # How it work
 
