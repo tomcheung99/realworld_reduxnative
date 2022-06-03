@@ -49,9 +49,6 @@ const App = () =>  {
         dispatch(setUserToken(token))
         console.log(token);
       }
-      else {
-        dispatch(setUserToken(""))
-      }
     } catch (error) {
       console.log(error)
     }

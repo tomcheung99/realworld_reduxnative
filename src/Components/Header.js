@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import {FONTS, COLORS, SIZE} from '../Theme'
 import { useNavigation } from '@react-navigation/native';
@@ -26,7 +26,7 @@ export const UnLoginHeader = () => {
 
 export const LoginHeader = () => {
     const navigation = useNavigation();
-    const {userName, userImage} = useSelector(state => state.userReducers)
+    const {userName, userImage, profilesOpen} = useSelector(state => state.userReducers)
     const dispatch = useDispatch()
     
     function myProfile(){
@@ -35,11 +35,12 @@ export const LoginHeader = () => {
         navigation.navigate("ProfilesScreen")
     }
 
+
     return(
         <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between',marginTop:20, marginLeft:20, marginRight:20, marginBottom:15, }}>
             <View style={{flex:1}}>
              <Text style={{color:COLORS.lightgray2, fontWeight:'300', fontSize:SIZE.small}}>Welcome</Text>
-             <TouchableOpacity onPress={() => navigation.navigate("ProfilesScreen")}>
+             <TouchableOpacity onPress={() => myProfile()}>
                  <Text style={{color:COLORS.green, fontWeight:'bold', fontSize:22}}>{userName}</Text>
              </TouchableOpacity>
             </View>

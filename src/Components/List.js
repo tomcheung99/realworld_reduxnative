@@ -4,7 +4,7 @@ import {FONTS, COLORS, SIZE} from '../Theme';
 import API from '../api/ReadWorldUrl'
 import {useSelector, useDispatch} from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import {setUserName, setCheckTag, setArticleSlug, setLoading, setTagData, setRefreshing} from '../redux/action';
+import {setUserName, setCheckTag, setArticleSlug, setLoading, setTagData, setRefreshing,} from '../redux/action';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //Components
@@ -40,14 +40,14 @@ function ListLine({name}) {
     )
 }
 
-function ListAuthor(ListAuthor) {
+function ListAuthor(profileShow) {
     const navigation = useNavigation();
     const [HeartChecked, setHeartChecked] = useState(false);
     const [ListData, setListData] = useState([]);
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
 
-    const {tag, articleSlug, loading, userToken, dataUpdate, refreshing, userName, profilesUserName, profilesOpen} = useSelector(state => state.userReducers)
+    const {tag, loading, userToken, dataUpdate, refreshing, userName, profilesUserName, } = useSelector(state => state.userReducers)
     const dispatch = useDispatch();
     
     const HeartButtonClicked = () => {
@@ -56,9 +56,9 @@ function ListAuthor(ListAuthor) {
     function getList () {
         API.get('articles' , {headers: {'Authorization':"Token " + userToken, 'Accept' : 'application/json', 'Content-Type': 'application/json'}})
         .then(function (response) {
+            // console.log(response.data)
             console.log(response.data)
             dispatch(setLoading(true))
-            console.log("GetTag "+ userToken)            
             return setListData(response.data.articles)
             dispatch(setLoading(false))
         })
@@ -71,7 +71,6 @@ function ListAuthor(ListAuthor) {
         API.get('articles?tag='+ tag, {headers: {'Authorization':"Token " + userToken, 'Accept' : 'application/json', 'Content-Type': 'application/json'}})
         .then(function (response) {
             dispatch(setLoading(true))
-            console.log("selectGetTag "+ userToken)
              return setListData(response.data.articles)
             dispatch(setLoading(false))
         })
@@ -86,7 +85,7 @@ function ListAuthor(ListAuthor) {
         .then(function (response) {
             dispatch(setLoading(true))
             return [
-                console.log("selectGetTag "+ userToken),
+                console.log("Use Profiles "),
                 setListData(response.data.articles),
             ]
             dispatch(setLoading(false))
@@ -111,7 +110,7 @@ function ListAuthor(ListAuthor) {
 
     useEffect(() => {
         {   
-            profilesOpen
+            profileShow.profileShow
             ?
             userProfileList()
             :
@@ -182,7 +181,6 @@ const List = ({name, profileShow}) => {
     const windowHeight = Dimensions.get('window').height;
     const {refreshing} = useSelector(state => state.userReducers)
     const dispatch = useDispatch();
-
     const onRefresh = React.useCallback(() => {
     dispatch(setRefreshing(true));
       wait(2000).then(() => dispatch(setRefreshing(false)));

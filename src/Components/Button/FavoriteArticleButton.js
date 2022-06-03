@@ -99,8 +99,8 @@ const FavoriteArticleButton = ({favorite, slug}) => {
         <>
         {
             favorite
-            ?<FavoriteArticleClickedButton favorite={favorite} slug={slug}/>
-            :<FavoriteArticleUnClickedButton favorite={favorite} slug={slug}/>
+            ? <FavoriteArticleClickedButton favorite={favorite} slug={slug}/>
+            : <FavoriteArticleUnClickedButton favorite={favorite} slug={slug}/>
         }
         </>
     )

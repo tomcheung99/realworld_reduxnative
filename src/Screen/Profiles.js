@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import {FONTS, COLORS, SIZE} from '../Theme'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import {useSelector, useDispatch} from 'react-redux';
-import {setProfilesOpen} from '../redux/action'
 import API from '../api/ReadWorldUrl'
 import List from '../Components/List'
 import Setting from '../Image/Svg/setting'
+
 
 //Components
 import BackHeader from '../Components/BackHeader'
@@ -15,11 +15,10 @@ import BackHeader from '../Components/BackHeader'
 
 
 const Profiles = ({navigation}) => {
+const {profilesUserName, profilesUserImage, profilesUserFollow, userName, dataUpdate} = useSelector(state => state.userReducers)
+const dispatch = useDispatch();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
-const {profilesUserName, profilesUserImage, profilesUserFollow, userName} = useSelector(state => state.userReducers)
-const dispatch = useDispatch();
 
     return(
         <SafeAreaView style={{height:windowHeight, backgroundColor:COLORS.white}}>
@@ -38,7 +37,7 @@ const dispatch = useDispatch();
                 null
             }
         </View>
-        <List name={"My Articles"} />
+        <List name={"My Articles"} profileShow={true}/>
         </SafeAreaView>
     )
 }

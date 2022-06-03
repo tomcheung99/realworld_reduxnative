@@ -33,8 +33,8 @@ function Banner() {
 const Home = () => {
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
 const {userToken} = useSelector(state => state.userReducers)
+const dispatch = useDispatch()
     return (
         <SafeAreaView edges={['top']} style={{flex:1, backgroundColor:COLORS.white, height:windowHeight}}>
             <View style={{flex:1,}}>
@@ -50,7 +50,7 @@ const {userToken} = useSelector(state => state.userReducers)
                 }
                 <Tags/>
                 { userToken === "" ? null : <NewArticleButton/> }
-                <List name={"Global Feed"}/>
+                <List name={"Global Feed"} profileShow={false}/>
             </View>
         </SafeAreaView>
     )

@@ -5,7 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import BackHeader from '../Components/BackHeader';
 import {FONTS, COLORS, SIZE} from '../Theme';
 import {useSelector, useDispatch} from 'react-redux';
-import {setLoading} from '../redux/action';
+import {setLoading, setDataUpdate, setUserName, setUserImage, setUserToken, setUserEmail} from '../redux/action';
 import User from '../Image/Svg/user';
 import API from '../api/ReadWorldUrl';
 
@@ -16,7 +16,7 @@ const Login = ({navigation}) => {
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const {loading} = useSelector(state => state.userReducers)
+const {loading, dataUpdate} = useSelector(state => state.userReducers)
 const dispatch = useDispatch();
 
 
@@ -27,6 +27,7 @@ const [ErrorMes, setErrorMes] = useState({});
 storeEmailData = async (Email) => {
     try {
       await AsyncStorage.setItem('@storage_useremail', Email)
+      dispatch(setUserEmail(Email))
       console.log("Email " + Email)
     } catch (e) {
         console.log(e)
@@ -36,6 +37,7 @@ storeEmailData = async (Email) => {
   storeTokenData = async (Token) => {
     try {
       await AsyncStorage.setItem('@storage_usertoken', Token)
+      dispatch(setUserToken(Token))
       console.log("Token " + Token)
     } catch (e) {
         console.log(e)
@@ -45,6 +47,7 @@ storeEmailData = async (Email) => {
   storeImageData = async (Image) => {
     try {
       await AsyncStorage.setItem('@storage_userimage', Image)
+      dispatch(setUserImage(Image))
       console.log("Image " + Image)
     } catch (e) {
         console.log(e)
@@ -54,6 +57,7 @@ storeEmailData = async (Email) => {
   storeUserNameData = async (UserName) => {
     try {
       await AsyncStorage.setItem('@storage_username', UserName)
+      dispatch(setUserName(UserName))
       console.log("UserName " + UserName)
     } catch (e) {
         console.log(e)
@@ -77,6 +81,7 @@ function LoginSubmit() {
           : storeImageData("https://api.realworld.io/images/smiley-cyrus.jpeg")
         }
         storeUserNameData(response.data.user.username)
+        dispatch(setDataUpdate(!dataUpdate))
         return [
             navigation.navigate("HomeScreen"),
         ]

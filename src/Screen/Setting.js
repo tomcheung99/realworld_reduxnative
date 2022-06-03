@@ -1,10 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect,} from 'react';
 import { View, Text, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import BackHeader from '../Components/BackHeader';
 import {FONTS, COLORS, SIZE} from '../Theme';
 import {useSelector, useDispatch} from 'react-redux';
 import {setLoading, setUserName, setUserEmail, setUserImage, setUserToken, setDataUpdate} from '../redux/action';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import InputScrollView from 'react-native-input-scroll-view';
 import User from '../Image/Svg/user';
 import API from '../api/ReadWorldUrl';
@@ -24,6 +26,42 @@ const [UserBio, setUserBio] = useState("");
 const [Password, setPassword] = useState("");
 const [ShowError, setShowError] = useState(false);
 const [ErrorMes, setErrorMes] = useState({});
+
+storeEmailData = async (Email) => {
+    try {
+      await AsyncStorage.setItem('@storage_useremail', Email)
+      dispatch(setUserEmail(Email))
+    } catch (e) {
+        console.log(e)
+    }
+  }
+
+  storeTokenData = async (Token) => {
+    try {
+      await AsyncStorage.setItem('@storage_usertoken', Token)
+      dispatch(setUserToken(Token))
+    } catch (e) {
+        console.log(e)
+    }
+  }
+
+  storeImageData = async (Image) => {
+    try {
+      await AsyncStorage.setItem('@storage_userimage', Image)
+      dispatch(setUserImage(Image))
+    } catch (e) {
+        console.log(e)
+    }
+  }
+
+  storeUserNameData = async (UserName) => {
+    try {
+      await AsyncStorage.setItem('@storage_username', UserName)
+      dispatch(setUserName(UserName))
+    } catch (e) {
+        console.log(e)
+    }
+  }
 
 
 
@@ -60,10 +98,18 @@ function UpdateUserDataSubmit() {
    })
 }
 
+
+
+
+
 function Logout() {
     dispatch(setUserToken(''));
+    storeEmailData('');
+    storeTokenData('');
+    storeImageData("https://api.realworld.io/images/smiley-cyrus.jpeg");
+    storeUserNameData('');
     dispatch(setDataUpdate(!dataUpdate));
-    navigation.navigate("HomeScreen")
+    navigation.navigate("HomeScreen");
 }
 
 

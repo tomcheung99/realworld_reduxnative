@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import {FONTS, COLORS, SIZE} from '../Theme';
 import API from '../api/ReadWorldUrl';
 import {useSelector, useDispatch} from 'react-redux';
-import {setProfilesUserName, setProfilesUserImage, setProfilesUserFollow, setCheckTag, setProfilesOpen} from '../redux/action'
+import {setProfilesUserName, setProfilesUserImage, setProfilesUserFollow, setCheckTag} from '../redux/action'
 
 
 const ArticleAuthor = ({type, icon, username, createdAt, navigation}) => {
@@ -21,7 +21,6 @@ const ArticleAuthor = ({type, icon, username, createdAt, navigation}) => {
             dispatch(setProfilesUserFollow(response.data.profile.following))
             dispatch(setCheckTag(""))
             return (
-                dispatch(setProfilesOpen(true)),
                 navigation.navigate("ProfilesScreen")
             )
         })
