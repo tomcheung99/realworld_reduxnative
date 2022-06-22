@@ -73,13 +73,9 @@ function LoginSubmit() {
     })
     .then(function (response) {
         dispatch(setLoading(true))
-        console.log(response.data.user)
         storeEmailData(response.data.user.email)
         storeTokenData(response.data.user.token)
-        { response.data.user.image !== null
-          ? storeImageData(response.data.user.image)
-          : storeImageData("https://api.realworld.io/images/smiley-cyrus.jpeg")
-        }
+        storeImageData(response.data.user.image)
         storeUserNameData(response.data.user.username)
         dispatch(setDataUpdate(!dataUpdate))
         return [

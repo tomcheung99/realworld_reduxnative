@@ -22,7 +22,6 @@ const [ArticleAbout, setArticleAbout] = useState("")
 const [ArticleContent, setArticleContent] = useState("")
 
     function UpdateArticle() {
-        console.log(articleSlug)
             setLoading(!Loading)
             const headers = { 'Content-Type': 'application/json', 'Authorization':"Token " + userToken }
             const data = {

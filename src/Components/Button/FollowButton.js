@@ -33,18 +33,18 @@ function FollowClickedButton ({following, username}) {
 
     return(
         <>
-        {
-            Loading
-            ?
-            <View style={{marginLeft:10, flexDirection:'row', alignItems:'center', textAlign:'center', paddingTop:5, paddingBottom:5, paddingLeft:10,paddingRight:10, borderWidth:1, borderColor:COLORS.lightgray2, borderRadius:3 }}>
-                <ActivityIndicator color='#bbbbbb'/>
-            </View>
-            :
-            <TouchableOpacity onPress={()=>DeleteFollow()} style={{backgroundColor:COLORS.lightgray2, marginLeft:10, flexDirection:'row', alignItems:'center', textAlign:'center', paddingTop:5, paddingBottom:5, paddingLeft:10,paddingRight:10, borderWidth:1, borderColor:COLORS.lightgray2, borderRadius:3 }}>
-            <AddWhiteIcon/>
-            <Text style={{...FONTS.content, fontWeight:'400', color:COLORS.white, paddingLeft:3}}>Unfollow</Text>
-            </TouchableOpacity>
-        }
+            {
+                Loading
+                ?
+                <View style={{marginLeft:10, flexDirection:'row', alignItems:'center', textAlign:'center', paddingTop:5, paddingBottom:5, paddingLeft:10,paddingRight:10, borderWidth:1, borderColor:COLORS.lightgray2, borderRadius:3 }}>
+                    <ActivityIndicator color='#bbbbbb'/>
+                </View>
+                :
+                <TouchableOpacity onPress={()=>DeleteFollow()} style={{backgroundColor:COLORS.lightgray2, marginLeft:10, flexDirection:'row', alignItems:'center', textAlign:'center', paddingTop:5, paddingBottom:5, paddingLeft:10,paddingRight:10, borderWidth:1, borderColor:COLORS.lightgray2, borderRadius:3 }}>
+                <AddWhiteIcon/>
+                <Text style={{...FONTS.content, fontWeight:'400', color:COLORS.white, paddingLeft:3}}>Unfollow</Text>
+                </TouchableOpacity>
+            }
         </>
 
     )

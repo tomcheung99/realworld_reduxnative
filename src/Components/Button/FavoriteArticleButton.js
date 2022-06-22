@@ -18,12 +18,11 @@ function FavoriteArticleClickedButton ({favorite, slug}) {
         const headers = { 'Content-Type': 'application/json', 'Authorization':"Token " + userToken }
         API.delete('articles/' + slug + "/favorite", {headers: headers})
         .then(function (response) {
-            return [
-                dispatch(setDataUpdate(!dataUpdate)),
-                dispatch(setCommentDataUpdate(!commentDataUpdate)),
-                console.log(response),
-                setLoading(!Loading),
-            ]
+            console.log(response.data),
+            console.log("UnLiked"),
+            dispatch(setDataUpdate(!dataUpdate)),
+            dispatch(setCommentDataUpdate(!commentDataUpdate)),
+            setLoading(!Loading)
         })
         .catch(function (error) {
           setLoading(!Loading);
@@ -32,7 +31,8 @@ function FavoriteArticleClickedButton ({favorite, slug}) {
     }
     return(
         <>
-            {   Loading
+            {   
+                Loading
                 ?
                 <View style={{backgroundColor:COLORS.green, marginLeft:10, flexDirection:'row', alignItems:'center', textAlign:'center', paddingTop:5, paddingBottom:5, paddingLeft:10,paddingRight:10, borderWidth:1, borderColor:COLORS.green, borderRadius:3 }}>
                     <ActivityIndicator color="#ffffff"/>
@@ -51,30 +51,23 @@ function FavoriteArticleClickedButton ({favorite, slug}) {
 function FavoriteArticleUnClickedButton ({favorite, slug}) {
     const {userToken, dataUpdate, commentDataUpdate} = useSelector(state => state.userReducers)
     const dispatch = useDispatch();
-
-
     const [Loading, setLoading] = useState(false)
     
     function PostFavorite() {
-        if( userToken === "" ) {
-           return console.log("No Token")
-        } else {
             setLoading(!Loading)
             const headers = { 'Content-Type': 'application/json', 'Content-Type': 'text/plain', 'Authorization':"Token " + userToken }
             API.post('articles/' + slug + "/favorite", '', {headers: headers})
             .then(function (response) {
-                return [
-                    dispatch(setDataUpdate(!dataUpdate)),
-                    dispatch(setCommentDataUpdate(!commentDataUpdate)),
-                    console.log(response),
-                    setLoading(!Loading),
-                ]
+                console.log(response.data),
+                console.log("Liked"),
+                dispatch(setDataUpdate(!dataUpdate)),
+                dispatch(setCommentDataUpdate(!commentDataUpdate)),
+                setLoading(!Loading)
             })
             .catch(function (error) {
                 setLoading(!Loading)
-                console.log(error.response.data);
+                console.log(error);
             })
-        } 
     }
     
     return(
@@ -94,14 +87,14 @@ function FavoriteArticleUnClickedButton ({favorite, slug}) {
     )
 }
 
-const FavoriteArticleButton = ({favorite, slug}) => {
+const FavoriteArticleButton = ({bool, favorite, slug}) => {
     return (
         <>
-        {
-            favorite
-            ? <FavoriteArticleClickedButton favorite={favorite} slug={slug}/>
-            : <FavoriteArticleUnClickedButton favorite={favorite} slug={slug}/>
-        }
+            {
+                bool
+                ? <FavoriteArticleClickedButton favorite={favorite} slug={slug}/>
+                : <FavoriteArticleUnClickedButton favorite={favorite} slug={slug}/>
+            }
         </>
     )
 }

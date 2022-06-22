@@ -1,9 +1,10 @@
-import {SET_USER_NAME, SET_USER_EMAIL, SET_USER_IMAGE, SET_USER_TOKEN, SET_CHECKED_TAG, SET_ARTICLE_SLUG, SET_LOADING, SET_PROFILES_USER_NAME, SET_PROFILES_USER_IMAGE, SET_PROFILES_USER_FOLLOW, SET_DATA_UPDATE, SET_REFRESHING, SET_COMMENT_DATA_UPDATE, SET_EDIT_DATA, SET_PROFILES_OPEN} from './action';
+import {SET_USER_NAME, SET_USER_EMAIL, SET_USER_IMAGE, SET_USER_BIO, SET_USER_TOKEN, SET_CHECKED_TAG, SET_ARTICLE_SLUG, SET_LOADING, SET_PROFILES_USER_NAME, SET_PROFILES_USER_IMAGE, SET_PROFILES_USER_FOLLOW, SET_DATA_UPDATE, SET_REFRESHING, SET_COMMENT_DATA_UPDATE, SET_EDIT_DATA, SET_PROFILES_OPEN} from './action';
 
 const initialState = {
     userName:'',
     userEmail:'',
     userImage:'',
+    userBio:'',
     userToken:'',
     tag:'',
     articleSlug:'',
@@ -26,6 +27,8 @@ function userReducers(state=initialState, action){
             return{...state, userEmail: action.payload}
         case SET_USER_IMAGE:
             return{...state, userImage: action.payload}
+        case SET_USER_BIO:
+            return{...state, userBio: action.payload}
         case SET_USER_TOKEN:
             return{...state, userToken: action.payload}
         case SET_CHECKED_TAG:

@@ -1,6 +1,7 @@
 export const SET_USER_NAME = 'SET_USER_NAME';
 export const SET_USER_EMAIL = 'SET_USER_EMAIL';
 export const SET_USER_IMAGE = 'SET_USER_IMAGE';
+export const SET_USER_BIO = 'SET_USER_BIO';
 export const SET_USER_TOKEN = 'SET_USER_TOKEN';
 export const SET_CHECKED_TAG = 'SET_CHECKED_TAG';
 export const SET_ARTICLE_SLUG = 'SET_ARTICLE_SLUG'; 
@@ -37,6 +38,13 @@ export const setUserImage = userImage => dispatch => {
     dispatch({
         type:SET_USER_IMAGE,
         payload: userImage,
+    });
+}
+
+export const setUserBio = userBio => dispatch => {
+    dispatch({
+        type:SET_USER_BIO,
+        payload: userBio,
     });
 }
 

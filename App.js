@@ -74,9 +74,6 @@ const retrieveImageData = async () => {
         if (image !== null) {
         dispatch(setUserImage(image))
         console.log(image);
-        } else {
-        dispatch(setUserImage("https://api.realworld.io/images/smiley-cyrus.jpeg"))
-        console.log("No Image");
         }
     } catch (error) {
       console.log(error)

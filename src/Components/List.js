@@ -57,9 +57,11 @@ function ListAuthor(profileShow) {
         API.get('articles' , {headers: {'Authorization':"Token " + userToken, 'Accept' : 'application/json', 'Content-Type': 'application/json'}})
         .then(function (response) {
             // console.log(response.data)
-            console.log(response.data)
             dispatch(setLoading(true))
-            return setListData(response.data.articles)
+            return [
+                console.log(response.data),
+                setListData(response.data.articles)
+            ]
             dispatch(setLoading(false))
         })
         .catch(function (error) {
@@ -71,7 +73,9 @@ function ListAuthor(profileShow) {
         API.get('articles?tag='+ tag, {headers: {'Authorization':"Token " + userToken, 'Accept' : 'application/json', 'Content-Type': 'application/json'}})
         .then(function (response) {
             dispatch(setLoading(true))
-             return setListData(response.data.articles)
+            return[
+                setListData(response.data.articles)
+            ]
             dispatch(setLoading(false))
         })
         .catch(function (error) {
@@ -134,8 +138,12 @@ function ListAuthor(profileShow) {
                         }
                         
                         username={Data.author.username} createdAt={Data.createdAt.split('T')[0]} navigation={navigation}/>
+                {
+                    userToken === ""
+                        ? null
+                        : <FavoriteArticleButton bool={Data.favorited} favorite={Data.favoritesCount} slug={Data.slug}/>
 
-                <FavoriteArticleButton bool={Data.favorited} favorite={Data.favoritesCount} slug={Data.slug}/>
+                }
 
                 </View>
                 <TouchableOpacity  onPress={() => dispatch(setArticleSlug(Data.slug)) || navigation.navigate("ArticleScreen")}>

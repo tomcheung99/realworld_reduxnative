@@ -94,7 +94,7 @@ function ArticleContent() {
                 :
                 <View style={{flexDirection:"row"}}>
                     <FollowButton following={AuthorData.following} username={AuthorData.username}/>
-                    <FavoriteArticleButton favorite={ArticleData.favoritesCount} slug={ArticleData.slug}/>
+                    <FavoriteArticleButton bool={ArticleData.favorited} favorite={ArticleData.favoritesCount} slug={ArticleData.slug}/>
                 </View>
             }
             </>
@@ -105,7 +105,7 @@ function ArticleContent() {
     useEffect(() => {
         getArticleData();
         getCommentData();
-    },[commentDataUpdate])
+    },[commentDataUpdate, userToken])
 
     return(
         <>
@@ -130,7 +130,10 @@ function ArticleContent() {
         
                         <View style={{flexDirection:"row", justifyContent:'center', alignItems:'center', marginTop:20}}>
                             <ArticleAuthor icon={AuthorData.image} username={AuthorData.username} createdAt={CreatedAt.split('T')[0]}/>
-                            { userToken === "" ? null : <FunctionButton/>}
+                            { userToken === "" 
+                                ? null 
+                                : <FunctionButton/>
+                            }
                         </View>
                             { userToken === "" ?  null : <PostComment/>  }
                         <CommentList/>
